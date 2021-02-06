@@ -1,7 +1,9 @@
 > Voici un hud simple pour vos serveurs darkrp ou autres
 
 PREREQUIS:
-    DARKRP
-    DARKRPMODIFICATIONS
+    -DARKRP
+    -DARKRPMODIFICATIONS
 
 Pensez a activer le hungermode dans darkrpmodifications
+
+Note : Le hud est confgurable
