@@ -5,3 +5,5 @@ PREREQUIS:
     -DARKRPMODIFICATIONS
 
 Pensez a activer le hungermode dans darkrpmodifications
+
+Note : Le hud est confgurable
