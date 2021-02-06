@@ -21,9 +21,8 @@ surface.CreateFont( "police1", {
 
 -- Config
 
-local rpname = false
+
 local text = true
-local money = false
 
 -- Retirer le HUD de base 
 
@@ -40,6 +39,7 @@ hook.Add("HUDPaint", "MonHud", function()
     local health = LocalPlayer():Health()
     local armor = LocalPlayer():Armor()
     local bouffe = LocalPlayer():getDarkRPVar("Energy")
+    local nomrp = LocalPlayer():Name()
 
     if health > 100 then health = 100 end
     if armor > 100 then armor = 100 end
@@ -56,20 +56,26 @@ hook.Add("HUDPaint", "MonHud", function()
         draw.RoundedBox(0, 15, ScrH() - 50, armor*3, 15 , Color(37, 192, 255))
         draw.RoundedBox(0, 15, ScrH() - 70, 300, 15 , Color(0,0,0, 200))
         draw.RoundedBox(0, 15, ScrH() - 70, bouffe*3, 15 , Color(255, 116, 37))
-        draw.SimpleText(armor, "police1", 155, ScrH() - 53.5, Color(255,255,255))
+        if text = true then
+            draw.SimpleText(armor, "police1", 155, ScrH() - 53.5, Color(255,255,255))
+        end
 
     else
 
         draw.RoundedBox(0, 15, ScrH() - 50, 300, 15 , Color(0,0,0, 200))
         draw.RoundedBox(0, 15, ScrH() - 50, bouffe*3, 15 , Color(255, 116, 37))
+        if text = true then
+            draw.SimpleText(bouffe, "police1", 155, ScrH() - 53.5, Color(255,255,255))
+        end
 
     
     end
 
    
 
-
-    draw.SimpleText(health, "police1", 155, ScrH() - 33.5, Color(255,255,255))
+    if text = true then
+        draw.SimpleText(health, "police1", 155, ScrH() - 33.5, Color(255,255,255))
+    end
     
 
 
