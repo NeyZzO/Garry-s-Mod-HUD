@@ -21,9 +21,7 @@ surface.CreateFont( "police1", {
 
 -- Config
 
-local rpname = false
 local text = true
-local money = false
 
 -- Retirer le HUD de base 
 
