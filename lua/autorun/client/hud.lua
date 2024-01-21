@@ -31,6 +31,26 @@ hook.Add( "HUDShouldDraw", "DefautHUD", function( name )
     end
 end )
 
+local HideElement = {
+    ["CHudHealth"] = true,
+    ["CHudBattery"] = true,
+    ["CHudAmmo"] = true,
+    ["CHudSecondaryAmmo"] = true,
+
+    ["DarkRP_HUD"] = true,
+    ["DarkRP_EntityDisplay"] = true,
+    ["DarkRP_LocalPlayerHUD"] = true,
+    ["DarkRP_Hungermod"] = true,
+    ["DarkRP_Agenda"] = true,
+    ["DarkRP_LockdownHUD"] = true,    
+    ["DarkRP_ArrestedHUD"] = false,   
+    ["DarkRP_ChatReceivers"] = true,
+}
+
+hook.Add("HUDShouldDraw", "mTxServ:ShouldDraw", function(name)
+    if HideElement[name] then return false end
+end)
+
 -- hud
 
 hook.Add("HUDPaint", "MonHud", function()
@@ -76,9 +96,9 @@ hook.Add("HUDPaint", "MonHud", function()
         draw.SimpleText(health, "police1", 155, ScrH() - 33.5, Color(255,255,255))
     end
     
-
-
-
+    if (LocalPlayer():GetActiveWeapon():GetPrintName() != nil) then
+        draw.RoundedBox()
+    end
 
 end)
 
