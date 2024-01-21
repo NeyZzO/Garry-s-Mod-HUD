@@ -19,10 +19,29 @@ surface.CreateFont( "police1", {
 } )
 
 
+surface.CreateFont( "police2", {
+	font = "Sans Serif", --  Use the font-name which is shown to you by your operating system Font Viewer, not the file name
+	extended = false,
+	size = 30,
+	weight = 400,
+	blursize = 0,
+	scanlines = 0,
+	antialias = true,
+	underline = false,
+	italic = false,
+	strikeout = false,
+	symbol = false,
+	rotary = false,
+	shadow = false,
+	additive = false,
+	outline = false,
+} )
+
 -- Config
 
 local text = true
 
+print('Ok Boomer')
 -- Retirer le HUD de base 
 
 hook.Add( "HUDShouldDraw", "DefautHUD", function( name )
@@ -47,13 +66,15 @@ local HideElement = {
     ["DarkRP_ChatReceivers"] = true,
 }
 
-hook.Add("HUDShouldDraw", "mTxServ:ShouldDraw", function(name)
+hook.Add("HUDShouldDraw", "AllHUDS", function(name)
     if HideElement[name] then return false end
 end)
 
 -- hud
 
-hook.Add("HUDPaint", "MonHud", function()
+hook.Add("HUDPaint", "NeyZzO", function()
+
+    if not LocalPlayer():Alive() then return end
 
     local health = LocalPlayer():Health()
     local armor = LocalPlayer():Armor()
@@ -75,7 +96,7 @@ hook.Add("HUDPaint", "MonHud", function()
         draw.RoundedBox(0, 15, ScrH() - 50, armor*3, 15 , Color(37, 192, 255))
         draw.RoundedBox(0, 15, ScrH() - 70, 300, 15 , Color(0,0,0, 200))
         draw.RoundedBox(0, 15, ScrH() - 70, bouffe*3, 15 , Color(255, 116, 37))
-        if text = true then
+        if text == true then
             draw.SimpleText(armor, "police1", 155, ScrH() - 53.5, Color(255,255,255))
         end
 
@@ -83,7 +104,7 @@ hook.Add("HUDPaint", "MonHud", function()
 
         draw.RoundedBox(0, 15, ScrH() - 50, 300, 15 , Color(0,0,0, 200))
         draw.RoundedBox(0, 15, ScrH() - 50, bouffe*3, 15 , Color(255, 116, 37))
-        if text = true then
+        if text == true then
             draw.SimpleText(bouffe, "police1", 155, ScrH() - 53.5, Color(255,255,255))
         end
 
@@ -92,12 +113,14 @@ hook.Add("HUDPaint", "MonHud", function()
 
    
 
-    if text = true then
-        draw.SimpleText(health, "police1", 155, ScrH() - 33.5, Color(255,255,255))
+    if text == true then
+        draw.SimpleText(LocalPlayer():Health(), "police1", 155, ScrH() - 33.5, Color(255,255,255))
     end
     
-    if (LocalPlayer():GetActiveWeapon():GetPrintName() != nil) then
-        draw.RoundedBox()
+    if (LocalPlayer():GetActiveWeapon():Clip1() != -1) then
+        draw.RoundedBox(0, ScrW() - 167, ScrH() - 62, 152, 52, Color(255,255,255))
+        draw.RoundedBox(0, ScrW() - 166, ScrH() - 61, 150, 50, Color(31,31,31))
+        draw.SimpleText(LocalPlayer():GetActiveWeapon():Clip1().." / ".. LocalPlayer():GetAmmoCount(LocalPlayer():GetActiveWeapon():GetPrimaryAmmoType()), "police2", ScrW() - 92, ScrH() - 38, Color(255,255,255), 1, 1)
     end
 
 end)
